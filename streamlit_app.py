@@ -43,7 +43,7 @@ if clicked:
     st.markdown("### Imágenes")
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("Imagen")
+        st.markdown("Imagen original")
         st.image(image_resized)
     with col2:
         st.markdown("Mapa de interés")
