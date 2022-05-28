@@ -24,15 +24,15 @@ if checkpoint is not None:
 if uploaded is not None:
     image = Image.open(uploaded)
 
-clicked = st.button("Evaluate")
+clicked = st.button("Evaluar")
 
 if clicked:
     probs, image_resized, overlay_img = mu.eval_image(model, image)
     
-    probs = [str(np.round(x*100, 1)) + "%" for x in probs]
+    probs_display = [str(np.round(x*100, 1)) + "%" for x in probs]
     idx = np.argmax(probs)
     name = NAMES[idx]
-    df = pd.DataFrame(zip(NAMES, probs), columns=["Nombre", "Probabilidad"])
+    df = pd.DataFrame(zip(NAMES, probs_display), columns=["Nombre", "Probabilidad"])
 
     st.markdown("### Predicción")
     st.markdown(f"{name}")
