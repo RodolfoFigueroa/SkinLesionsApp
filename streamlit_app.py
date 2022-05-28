@@ -40,9 +40,11 @@ if clicked:
     st.markdown("### Probabilidades")
     st.table(df)
 
-    st.markdown("### Características de interés")
+    st.markdown("### Imágenes")
     col1, col2 = st.columns(2)
     with col1:
+        st.text("Imagen")
         st.image(image_resized)
     with col2:
+        st.text("Mapa de interés")
         st.image(overlay_img)
