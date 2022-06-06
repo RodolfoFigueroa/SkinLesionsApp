@@ -8,11 +8,11 @@ from PIL import Image
 NAMES = [
     "Queratosis actínica",
     "Carcinoma de células basales",
-    "Lesiones benignas similares a queratosis",
+    "Lesión benigna similar a queratosis",
     "Dermatofibroma",
     "Melanoma",
     "Nevo melanocítico",
-    "Lesiones vasculares"
+    "Lesión vascular"
 ]
 
 checkpoint = st.file_uploader("Sube un checkpoint", type="ckpt")
