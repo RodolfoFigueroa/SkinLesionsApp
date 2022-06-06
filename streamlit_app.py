@@ -33,6 +33,7 @@ if clicked:
     idx = np.argmax(probs)
     name = NAMES[idx]
     df = pd.DataFrame(zip(NAMES, probs_display), columns=["Nombre", "Probabilidad"])
+    df = df.sort_values("Probabilidad", ascending=False)
 
     st.markdown("### Predicción")
     st.markdown(f"{name}")
