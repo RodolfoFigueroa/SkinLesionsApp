@@ -32,8 +32,11 @@ if clicked:
     probs_display = [str(np.round(x*100, 1)) + "%" for x in probs]
     idx = np.argmax(probs)
     name = NAMES[idx]
-    df = pd.DataFrame(zip(NAMES, probs_display), columns=["Nombre", "Probabilidad"])
-    df = df.sort_values("Probabilidad", ascending=False)
+    
+    idx_sort = np.argsort(probs)[::-1]
+    probs_sorted = [probs_display[i] for i in idx_sort]
+    names_sorted = [NAMES[i] for i in idx_sort]
+    df = pd.DataFrame(zip(names_sorted, probs_sorted), columns=["Nombre", "Probabilidad"])
 
     st.markdown("### Predicción")
     st.markdown(f"{name}")
