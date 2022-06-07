@@ -29,6 +29,11 @@ CLASS_WEIGHTS = np.array([
     10.07545272
 ])
 
+CLASS_WEIGHTS_BINARY = np.array([
+    0.56251404, 
+    4.49910153
+])
+
 transform_1 = transforms.Resize(SHAPE)
 
 transform_2 = transforms.Compose([
