@@ -25,7 +25,7 @@ uploaded = st.file_uploader("Sube una imagen", type="jpg")
 binary = st.checkbox("Binario")
 
 if checkpoint is not None:
-    model = mu.load_model(checkpoint, binary=binary)
+    model = mu.load_model(checkpoint, binary)
 
 if uploaded is not None:
     image = Image.open(uploaded)
