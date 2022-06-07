@@ -43,12 +43,12 @@ transform_2 = transforms.Compose([
 
 
 class RedNeuronal(pl.LightningModule):
-    def __init__(self, class_weights=None):
+    def __init__(self, binary):
         super(RedNeuronal, self).__init__()
-        if class_weights is None:
-            self.class_weights = torch.FloatTensor(CLASS_WEIGHTS)
+        if binary:
+            self.class_weights = torch.FloatTensor(CLASS_WEIGHTS_BINARY)
         else:
-            self.class_weights = torch.FloatTensor(class_weights)
+            self.class_weights = torch.FloatTensor(CLASS_WEIGHTS)
 
         self.conv1 = nn.Conv2d(3, 6, (5, 5), padding=2)
         self.conv2 = nn.Conv2d(6, 16, (5, 5))
@@ -99,9 +99,9 @@ class RedNeuronal(pl.LightningModule):
             num_features *= s
         return num_features
 
-def load_model(checkpoint):
+def load_model(checkpoint, binary):
     with torch.no_grad():
-        model = RedNeuronal.load_from_checkpoint(checkpoint)
+        model = RedNeuronal.load_from_checkpoint(checkpoint, binary=binary)
         model.to(device)
         model.eval()
         return model

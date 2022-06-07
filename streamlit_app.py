@@ -22,9 +22,10 @@ NAMES_BINARY = [
 
 checkpoint = st.file_uploader("Sube un checkpoint", type="ckpt")
 uploaded = st.file_uploader("Sube una imagen", type="jpg")
+binary = st.checkbox("Binario")
 
 if checkpoint is not None:
-    model = mu.load_model(checkpoint)
+    model = mu.load_model(checkpoint, binary=binary)
 
 if uploaded is not None:
     image = Image.open(uploaded)
