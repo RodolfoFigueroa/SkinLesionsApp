@@ -12,7 +12,12 @@ NAMES = [
     "Dermatofibroma",
     "Melanoma",
     "Nevo melanocítico",
-    "Lesión vascular"
+    "Lesión vascular",
+]
+
+NAMES_BINARY = [
+    "No melanoma",
+    "Melanoma",
 ]
 
 checkpoint = st.file_uploader("Sube un checkpoint", type="ckpt")
@@ -29,13 +34,18 @@ clicked = st.button("Evaluar")
 if clicked:
     probs, image_resized, overlay_img = mu.eval_image(model, image)
     
+    if len(probs) == 2:
+        names = NAMES_BINARY
+    else:
+        names = NAMES
+    
     probs_display = [str(np.round(x*100, 1)) + "%" for x in probs]
     idx = np.argmax(probs)
-    name = NAMES[idx]
+    name = names[idx]
     
     idx_sort = np.argsort(probs)[::-1]
     probs_sorted = [probs_display[i] for i in idx_sort]
-    names_sorted = [NAMES[i] for i in idx_sort]
+    names_sorted = [names[i] for i in idx_sort]
     df = pd.DataFrame(zip(names_sorted, probs_sorted), columns=["Nombre", "Probabilidad"])
 
     st.markdown("### Predicción")
