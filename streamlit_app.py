@@ -1,3 +1,5 @@
+import re
+
 import model_utils as mu
 import numpy as np
 import pandas as pd
@@ -78,7 +80,7 @@ if clicked:
     df = pd.DataFrame(zip(names_sorted, probs_sorted), columns=["Nombre", "Probabilidad"])
 
     if evaluation:
-        index = uploaded.name.replace(".jpg", "")
+        index = re.sub(r"\.(jpg|png)", "", uploaded.name)
         print(index)
     
     st.markdown("### Predicción")
