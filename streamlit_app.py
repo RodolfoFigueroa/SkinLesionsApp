@@ -47,9 +47,9 @@ evaluation = st.checkbox("Evaluation")
 
 metadata = pd.read_csv("./HAM10000_metadata")
 if binary:
-    metadata["target"] = metatdata["dx"].map(LABEL_MAP_BINARY)
+    metadata["target"] = metadata["dx"].map(LABEL_MAP_BINARY)
 else:
-    metadata["target"] = metatdata["dx"].map(LABEL_MAP)
+    metadata["target"] = metadata["dx"].map(LABEL_MAP)
     
 clicked = st.button("Evaluar")
 
