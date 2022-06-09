@@ -82,12 +82,17 @@ if clicked:
     if evaluation:
         index = re.sub(r"\.(jpg|png)", "", uploaded.name)
         correct = metadata.loc[metadata["image_id"]==index, "target"]
-        st.text(correct)
+        if len(correct) == 0:
+            correct = ""
+        else:
+            correct = correct.iloc[0]
+            correct = NAMES[correct]
+        
     
     st.markdown("### Predicción")
     st.markdown(f"{name}")
     if evaluation:
-        st.markdown("Correcto: ")
+        st.markdown(f"Correcto: {correct}")
 
     st.markdown("### Probabilidades")
     st.table(df)
