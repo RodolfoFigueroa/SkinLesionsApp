@@ -20,9 +20,37 @@ NAMES_BINARY = [
     "Melanoma",
 ]
 
+LABEL_MAP = {
+    "akiec": 0,
+    "bcc": 1, 
+    "bkl": 2, 
+    "df": 3, 
+    "mel": 4, 
+    "nv": 5, 
+    "vasc": 6
+}
+
+LABEL_MAP_BINARY = {
+    "akiec": 0,
+    "bcc": 0, 
+    "bkl": 0, 
+    "df": 0, 
+    "mel": 1, 
+    "nv": 0, 
+    "vasc": 0
+}
+
+metadata = pd.read_csv("./HAM10000_metadata")
+
+if binary:
+    metadata["target"] = metatdata["dx"].map(LABEL_MAP_BINARY)
+else:
+    metadata["target"] = metatdata["dx"].map(LABEL_MAP)
+         
 checkpoint = st.file_uploader("Sube un checkpoint", type="ckpt")
 uploaded = st.file_uploader("Sube una imagen", type="jpg")
 binary = st.checkbox("Binario")
+evaluation = st.checkbox("Evaluation")
     
 clicked = st.button("Evaluar")
 
@@ -48,6 +76,8 @@ if clicked:
 
     st.markdown("### Predicción")
     st.markdown(f"{name}")
+    if evaluation:
+        st.markdown("Correcto: ")
 
     st.markdown("### Probabilidades")
     st.table(df)
