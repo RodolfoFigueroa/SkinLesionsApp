@@ -77,6 +77,10 @@ if clicked:
     names_sorted = [names[i] for i in idx_sort]
     df = pd.DataFrame(zip(names_sorted, probs_sorted), columns=["Nombre", "Probabilidad"])
 
+    if evaluation:
+        index = uploaded.name.replace(".jpg", "")
+        print(index)
+    
     st.markdown("### Predicción")
     st.markdown(f"{name}")
     if evaluation:
