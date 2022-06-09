@@ -39,18 +39,17 @@ LABEL_MAP_BINARY = {
     "nv": 0, 
     "vasc": 0
 }
-
-metadata = pd.read_csv("./HAM10000_metadata")
-
-if binary:
-    metadata["target"] = metatdata["dx"].map(LABEL_MAP_BINARY)
-else:
-    metadata["target"] = metatdata["dx"].map(LABEL_MAP)
          
 checkpoint = st.file_uploader("Sube un checkpoint", type="ckpt")
 uploaded = st.file_uploader("Sube una imagen", type="jpg")
 binary = st.checkbox("Binario")
 evaluation = st.checkbox("Evaluation")
+
+metadata = pd.read_csv("./HAM10000_metadata")
+if binary:
+    metadata["target"] = metatdata["dx"].map(LABEL_MAP_BINARY)
+else:
+    metadata["target"] = metatdata["dx"].map(LABEL_MAP)
     
 clicked = st.button("Evaluar")
 
