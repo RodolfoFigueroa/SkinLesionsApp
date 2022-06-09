@@ -42,8 +42,12 @@ LABEL_MAP_BINARY = {
          
 checkpoint = st.file_uploader("Sube un checkpoint", type="ckpt")
 uploaded = st.file_uploader("Sube una imagen", type="jpg")
-binary = st.checkbox("Binario")
-evaluation = st.checkbox("Evaluation")
+
+check1, check2 = st.columns(2)
+with check1:
+    binary = st.checkbox("Binario")
+with check2:
+    evaluation = st.checkbox("Evaluación")
 
 metadata = pd.read_csv("./HAM10000_metadata")
 if binary:
