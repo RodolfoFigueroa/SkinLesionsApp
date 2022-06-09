@@ -86,7 +86,7 @@ if clicked:
             correct = ""
         else:
             correct = correct.iloc[0]
-            correct = NAMES[correct]
+            correct = names[correct]
         
     
     st.markdown("### Predicción")
