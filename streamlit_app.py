@@ -81,7 +81,7 @@ if clicked:
 
     if evaluation:
         index = re.sub(r"\.(jpg|png)", "", uploaded.name)
-        print(index)
+        st.text(index)
     
     st.markdown("### Predicción")
     st.markdown(f"{name}")
